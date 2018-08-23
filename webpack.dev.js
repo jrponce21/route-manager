@@ -9,7 +9,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 let plugins = [
   new HtmlWebpackPlugin({
-    title: 'Frontend boilerplate'
+    title: 'Frontend boilerplate',
+    template: './client/index.html'
   }),
   new HotModuleReplacementPlugin()
 ]
