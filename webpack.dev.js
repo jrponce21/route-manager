@@ -31,7 +31,7 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       exclude: {
         test: path.resolve(__dirname, 'node_modules')
       },
@@ -51,7 +51,7 @@ module.exports = {
       path.resolve('./client'),
       path.resolve('./')
     ],
-    extensions: ['.js', '.css', '.scss']
+    extensions: ['.js', '.css', '.scss', '.jsx']
   },
   plugins,
   devServer: {
