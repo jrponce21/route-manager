@@ -22,7 +22,6 @@ class App extends React.Component{
     requestRoutes = () => {
         RouteManager.get(API_URL,(data) => {
             if(data){
-                console.log("data", data.routes);
                 const routes = data.routes || []
                 this.setState({
                     routes

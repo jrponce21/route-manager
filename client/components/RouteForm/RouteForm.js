@@ -52,7 +52,6 @@ class RouteForm extends React.Component{
     handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("in submit")
 
         const arrival = this.state.arrivalDate.toLocaleString().split(' ');
         const departure = this.state.departureDate.toLocaleString().split(' ');
