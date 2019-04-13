@@ -40,7 +40,7 @@ const CloseIcon = styled.span`
   background: #FFFFFF;
   border-radius: 30px;
   border: thin solid #282C2E;
-  
+  cursor: pointer;  
 `
 
 class Route extends React.Component {
