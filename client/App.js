@@ -3,7 +3,8 @@ import ListRoutes from "./components/ListRoutes/ListRoutes";
 import RouteForm from "./components/RouteForm/RouteForm";
 import RouteManager from "./services/manager";
 import {API_URL} from "./constants/constants";
-import Route from "./components/Route/Route";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class App extends React.Component{
     constructor(props){
@@ -38,9 +39,21 @@ class App extends React.Component{
     }
 
     handleRouteDelete = (id) => {
-        RouteManager.delete(`${API_URL}/${id}`, () => {
-            this.requestRoutes();
-        })
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure you want to delete this route?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => RouteManager.delete(`${API_URL}/${id}`, () => {
+                        this.requestRoutes();
+                    })
+                },
+                {
+                    label: 'No'
+                }
+            ]
+        });
     }
 
     render() {
