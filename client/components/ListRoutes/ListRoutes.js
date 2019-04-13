@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Route from "../Route/Route";
+import PropTypes from "prop-types";
 
 const RoutesContainer = styled.div`
     display: flex;
@@ -30,7 +31,7 @@ const ListRoutes = function (props) {
                                 destination={item.destination_id}
                                 departureDate={item.departure_time}
                                 arrivalDate={item.arrival_time}
-                                onClose={(id) => console.log("closing route with id", id)}
+                                onClose={(id) => props.onDeleteRoute && props.onDeleteRoute(id)}
                             />
                         )
                     }
@@ -43,5 +44,6 @@ const ListRoutes = function (props) {
 export default ListRoutes;
 
 ListRoutes.propTypes = {
-
+        routes: PropTypes.array,
+        onDeleteRoute: PropTypes.func
 }

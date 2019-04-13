@@ -1,25 +1,28 @@
 import {API_KEY, API_URL} from "../constants/constants";
+import axios from "axios";
 
 class RouteManager {
     constructor() {
+        this.instance = axios.create({
+            baseURL: API_URL,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "x-api-key": API_KEY,
+            }
+        })
     }
 
     get(url, cb){
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("x-api-key", API_KEY);
+        this.instance.get(url).then((info) => cb && cb(info.data.data)).catch((error) => cb && cb(null))
+    }
 
-        xhr.onload = function() {
-            const responseText = xhr.responseText;
-            cb && cb(JSON.parse(responseText).data);
-        };
+    post(url, data, cb){
+        this.instance.post(url, data).then((info) => cb && cb(info)).catch((error) => console.log("the error it's", error))
+    }
 
-        xhr.onerror = function() {
-            cb && cb(null)
-        };
-        xhr.send();
+    delete(url, cb){
+        this.instance.delete(url).then((info) => cb && cb(info)).catch((error) => console.log("the error it's", error))
     }
 
 }
